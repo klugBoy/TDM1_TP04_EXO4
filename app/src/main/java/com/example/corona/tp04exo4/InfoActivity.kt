@@ -1,5 +1,7 @@
 package com.example.corona.tp04exo4
 
+import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -29,5 +31,14 @@ class InfoActivity : AppCompatActivity() {
         b.putSerializable("prof",module.profModule)
         fragment.arguments = b
         supportFragmentManager.beginTransaction().replace(R.id.infoFragment,fragment).commit()
+    }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation === Configuration.ORIENTATION_LANDSCAPE) {
+            val intent = Intent(this, MainLandscapeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
